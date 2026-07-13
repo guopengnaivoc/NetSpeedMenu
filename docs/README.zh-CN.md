@@ -41,6 +41,12 @@ shasum -a 256 ~/Downloads/NetSpeedMenu-1.2-universal.dmg
 
 ## 安装
 
+先按图中的箭头操作。绿色路线只适用于普通的未签名／未公证警告；红色 STOP 提示出现时必须停止。
+
+<p align="center">
+  <img src="images/install-guide.zh-CN.svg" width="900" alt="网速安装图解：普通未签名警告按绿色路线保留并打开 App，恶意软件、损坏或修改警告按红色 STOP 分支停止">
+</p>
+
 1. 双击 `NetSpeedMenu-1.2-universal.dmg`。
 2. 将“网速.app”拖入旁边的“Applications”文件夹。
 3. 打开“应用程序”文件夹，找到“网速”。

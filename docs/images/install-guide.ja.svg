@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1820" viewBox="0 0 1200 1820" role="img" aria-labelledby="title desc" fill="#17324d">
+  <title id="title">NetSpeedMenu：ダウンロードから初回起動まで</title>
+  <desc id="desc">DMG をダウンロードし、アプリケーションにドラッグし、通常の未署名アプリ警告でアプリをゴミ箱に入れず、プライバシーとセキュリティの「このまま開く」を使う手順。マルウェアや損傷が明記された場合は中止する。</desc>
+  <defs>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7faff"/>
+      <stop offset="1" stop-color="#eef3fb"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b6fd3"/>
+      <stop offset="1" stop-color="#11a9c6"/>
+    </linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#18324f" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="28" markerHeight="28" refX="25" refY="14" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L28,14 L0,28 Z" fill="#1677d2"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="28" markerHeight="28" refX="25" refY="14" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L28,14 L0,28 Z" fill="#16885b"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .panel { fill: #ffffff; stroke: #dce6f1; stroke-width: 2; filter: url(#shadow); }
+      .step { fill: url(#brand); }
+      .stepText { fill: #ffffff; font-size: 30px; font-weight: 800; text-anchor: middle; dominant-baseline: middle; }
+      .panelTitle { font-size: 31px; font-weight: 750; }
+      .body { font-size: 23px; }
+      .small { font-size: 20px; fill: #526a81; }
+      .tiny { font-size: 18px; fill: #62788e; }
+      .buttonText { font-size: 20px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="1820" rx="36" fill="url(#pageBg)"/>
+  <rect x="0" y="0" width="1200" height="132" rx="36" fill="url(#brand)"/>
+  <rect x="0" y="92" width="1200" height="40" fill="url(#brand)"/>
+  <text x="600" y="58" text-anchor="middle" font-size="42" font-weight="800" fill="#ffffff">NetSpeedMenu：ダウンロードから初回起動まで</text>
+  <text x="600" y="101" text-anchor="middle" font-size="21" font-weight="600" fill="#eaf8ff">未署名アプリの警告とマルウェア警告は別です · 配布元と SHA-256 を確認</text>
+
+  <!-- Step 1: download and open DMG -->
+  <rect class="panel" x="60" y="160" width="1080" height="240" rx="28"/>
+  <circle class="step" cx="112" cy="215" r="34"/>
+  <text class="stepText" x="112" y="216">1</text>
+  <text class="panelTitle" x="165" y="224">公式 Releases から DMG をダウンロード</text>
+  <text class="small" x="165" y="258">ファイル名と SHA-256 を確認し、ダブルクリック</text>
+  <rect x="160" y="285" width="670" height="78" rx="16" fill="#f2f7fd" stroke="#bdd1e6" stroke-width="2"/>
+  <circle cx="205" cy="324" r="25" fill="url(#brand)"/>
+  <path d="M205 306 V334 M193 323 L205 336 L217 323" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="245" y="318" font-size="22" font-weight="700">NetSpeedMenu-1.2-universal.dmg</text>
+  <text x="245" y="345" class="tiny">公式 Release からダウンロード</text>
+  <path d="M855 322 H1015" fill="none" stroke="#1677d2" stroke-width="8" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+  <text x="935" y="298" text-anchor="middle" font-size="19" font-weight="750" fill="#1677d2">ダブルクリック</text>
+  <circle cx="1040" cy="322" r="24" fill="#eaf4ff" stroke="#1677d2" stroke-width="4"/>
+  <circle cx="1040" cy="322" r="9" fill="#1677d2"/>
+
+  <path d="M600 410 V438" fill="none" stroke="#1677d2" stroke-width="8" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+
+  <!-- Step 2 and 3: drag and open -->
+  <rect class="panel" x="60" y="455" width="1080" height="310" rx="28"/>
+  <circle class="step" cx="112" cy="510" r="34"/>
+  <text class="stepText" x="112" y="511">2</text>
+  <text class="panelTitle" x="165" y="519">「网速.app」を「アプリケーション」へドラッグ</text>
+  <rect x="140" y="555" width="920" height="142" rx="18" fill="#f7f9fc" stroke="#d5e0eb" stroke-width="2"/>
+  <rect x="140" y="555" width="920" height="34" rx="18" fill="#e9eef4"/>
+  <rect x="140" y="573" width="920" height="16" fill="#e9eef4"/>
+  <circle cx="163" cy="572" r="6" fill="#ff5f57"/>
+  <circle cx="183" cy="572" r="6" fill="#febc2e"/>
+  <circle cx="203" cy="572" r="6" fill="#28c840"/>
+  <g transform="translate(250 604)">
+    <rect width="72" height="72" rx="18" fill="url(#brand)"/>
+    <path d="M36 14 V36 M25 25 L36 14 L47 25 M36 58 V36 M25 47 L36 58 L47 47" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="36" y="98" text-anchor="middle" font-size="19" font-weight="700">网速.app</text>
+  </g>
+  <path d="M395 640 C520 590, 665 590, 790 640" fill="none" stroke="#1677d2" stroke-width="10" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+  <text x="595" y="610" text-anchor="middle" font-size="21" font-weight="800" fill="#1677d2">ドラッグ</text>
+  <g transform="translate(815 604)">
+    <path d="M2 20 H35 L46 8 H98 Q108 8 108 18 V68 Q108 78 98 78 H12 Q2 78 2 68 Z" fill="#55a8ee" stroke="#2177bd" stroke-width="3"/>
+    <path d="M2 29 H108 V68 Q108 78 98 78 H12 Q2 78 2 68 Z" fill="#7ec3f5"/>
+    <text x="55" y="104" text-anchor="middle" font-size="17" font-weight="700">アプリケーション</text>
+  </g>
+  <circle class="step" cx="178" cy="727" r="25"/>
+  <text class="stepText" x="178" y="728" style="font-size:23px">3</text>
+  <text x="217" y="735" class="body" font-weight="700" style="font-size:21px">「アプリケーション」の「网速」を開く（DMG から直接実行しない）</text>
+
+  <path d="M600 775 V803" fill="none" stroke="#1677d2" stroke-width="8" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+
+  <!-- Step 4: classify the warning -->
+  <rect class="panel" x="60" y="820" width="1080" height="395" rx="28"/>
+  <text class="panelTitle" x="100" y="870">まず警告の種類を確認</text>
+  <rect x="95" y="895" width="665" height="275" rx="22" fill="#f1fbf6" stroke="#8ccdb0" stroke-width="3"/>
+  <circle class="step" cx="140" cy="940" r="30"/>
+  <text class="stepText" x="140" y="941" style="font-size:26px">4</text>
+  <text x="186" y="935" font-size="21" font-weight="800" fill="#146b49">未署名／未公証アプリに対する通常の警告だけ</text>
+  <text x="186" y="967" class="small" style="font-size:17px">例：「Appleでは悪質なソフトウェアかどうかを確認できません」</text>
+  <rect x="135" y="995" width="585" height="125" rx="18" fill="#ffffff" stroke="#ced9e4" stroke-width="2"/>
+  <circle cx="177" cy="1032" r="20" fill="#f6b73c"/>
+  <path d="M177 1018 V1038 M177 1048 V1050" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+  <text x="213" y="1027" font-size="17" font-weight="700">Appleでは「网速」が悪質なソフトウェアかどうかを確認できません</text>
+  <text x="213" y="1054" class="tiny">図は例です。実際の表示は異なる場合があります</text>
+  <rect x="313" y="1074" width="174" height="36" rx="9" fill="#f4f5f7" stroke="#c7cdd4"/>
+  <text class="buttonText" x="400" y="1093" style="font-size:17px">ゴミ箱に入れる</text>
+  <path d="M330 1068 L470 1115 M470 1068 L330 1115" stroke="#d74343" stroke-width="9" stroke-linecap="round"/>
+  <rect x="515" y="1074" width="150" height="36" rx="9" fill="#1788e5"/>
+  <text class="buttonText" x="590" y="1093" fill="#ffffff">完了</text>
+  <path d="M585 1148 C610 1136, 626 1125, 616 1112" fill="none" stroke="#16885b" stroke-width="7" marker-end="url(#arrowGreen)"/>
+  <text x="287" y="1152" font-size="19" font-weight="800" fill="#16885b">「完了」または閉じる。「ゴミ箱に入れる」は選ばない</text>
+
+  <rect x="785" y="895" width="320" height="275" rx="22" fill="#fff3f3" stroke="#e08b8b" stroke-width="3"/>
+  <circle cx="945" cy="953" r="40" fill="#d83f3f"/>
+  <rect x="917" y="943" width="56" height="20" rx="7" fill="#ffffff"/>
+  <text x="945" y="1024" text-anchor="middle" font-size="27" font-weight="900" fill="#b72f2f">STOP</text>
+  <text x="945" y="1054" text-anchor="middle" font-size="17" font-weight="800" fill="#8c3030">マルウェアを含む</text>
+  <text x="945" y="1081" text-anchor="middle" font-size="17" font-weight="800" fill="#8c3030">コンピュータに損害を与える</text>
+  <text x="945" y="1108" text-anchor="middle" font-size="17" font-weight="800" fill="#8c3030">破損または変更されている</text>
+  <text x="945" y="1141" text-anchor="middle" font-size="19" font-weight="900" fill="#b72f2f">中止。回避しない。</text>
+
+  <path d="M427 1225 V1253" fill="none" stroke="#16885b" stroke-width="8" stroke-linecap="round" marker-end="url(#arrowGreen)"/>
+
+  <!-- Steps 5-7: Privacy & Security -->
+  <rect class="panel" x="60" y="1270" width="1080" height="410" rx="28"/>
+  <text class="panelTitle" x="100" y="1320">通常の警告：この App だけを例外にする</text>
+  <rect x="100" y="1350" width="1000" height="265" rx="20" fill="#f6f7f9" stroke="#d1d9e2" stroke-width="2"/>
+  <rect x="100" y="1350" width="290" height="265" rx="20" fill="#e9edf2"/>
+  <rect x="100" y="1390" width="290" height="225" fill="#e9edf2"/>
+  <circle cx="128" cy="1371" r="6" fill="#ff5f57"/><circle cx="148" cy="1371" r="6" fill="#febc2e"/><circle cx="168" cy="1371" r="6" fill="#28c840"/>
+  <text x="140" y="1425" font-size="20" font-weight="700">システム設定</text>
+  <rect x="120" y="1450" width="250" height="48" rx="12" fill="#cfe6fb" stroke="#75afe0"/>
+  <circle class="step" cx="148" cy="1474" r="20"/>
+  <text class="stepText" x="148" y="1475" style="font-size:19px">5</text>
+  <text x="180" y="1482" font-size="16" font-weight="750">プライバシーとセキュリティ</text>
+  <text x="430" y="1407" font-size="25" font-weight="800">プライバシーとセキュリティ</text>
+  <text x="430" y="1450" font-size="21" font-weight="750">セキュリティ</text>
+  <text x="430" y="1491" class="small">開発元を確認できないため「网速」はブロックされました。</text>
+  <circle class="step" cx="810" cy="1544" r="23"/>
+  <text class="stepText" x="810" y="1545" style="font-size:21px">6</text>
+  <path d="M842 1544 H884" fill="none" stroke="#16885b" stroke-width="7" marker-end="url(#arrowGreen)"/>
+  <rect x="900" y="1518" width="164" height="52" rx="12" fill="#16885b"/>
+  <text class="buttonText" x="982" y="1545" fill="#ffffff" style="font-size:17px">このまま開く</text>
+  <circle class="step" cx="693" cy="1593" r="21"/>
+  <text class="stepText" x="693" y="1594" style="font-size:19px">7</text>
+  <text x="728" y="1601" font-size="20" font-weight="750">警告が再表示されたら「開く」</text>
+  <text x="100" y="1652" class="small" style="font-size:18px">「このまま開く」がない場合は、App をもう一度開こうとして、すぐこの画面に戻る（通常約 1 時間表示）。</text>
+
+  <rect x="60" y="1710" width="1080" height="80" rx="20" fill="#e9f2fb" stroke="#b6cee5" stroke-width="2"/>
+  <text x="600" y="1743" text-anchor="middle" font-size="18" font-weight="750">macOS のバージョンや言語で表示は異なります。配布元と SHA-256 を確認してから続行してください。</text>
+  <text x="600" y="1771" text-anchor="middle" class="tiny">Apple の手順：システム設定 → プライバシーとセキュリティ → このまま開く → 開く</text>
+</svg>

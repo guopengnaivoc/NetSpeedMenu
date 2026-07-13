@@ -41,6 +41,12 @@ Expected SHA-256:
 
 ## Install
 
+Follow the arrows in the visual guide first. The green path applies only to ordinary unsigned/unnotarized-app alerts; stop whenever the red STOP condition appears.
+
+<p align="center">
+  <img src="images/install-guide.en.svg" width="900" alt="Visual guide: for an ordinary unsigned or unnotarized-app alert, avoid Move to Trash and use Open Anyway in Privacy &amp; Security; stop for malware, damage, or modification alerts">
+</p>
+
 1. Double-click `NetSpeedMenu-1.2-universal.dmg`.
 2. Drag `网速.app` to the adjacent Applications folder.
 3. Open the Applications folder and locate `网速`.
