@@ -41,6 +41,12 @@ shasum -a 256 ~/Downloads/NetSpeedMenu-1.2-universal.dmg
 
 ## インストール
 
+まず図の矢印に従ってください。緑の手順は通常の未署名／未公証アプリの警告にだけ使います。赤い STOP 欄に該当する警告が表示された場合は中止してください。
+
+<p align="center">
+  <img src="images/install-guide.ja.svg" width="900" alt="図解：通常の未署名／未公証アプリ警告ではゴミ箱に入れず「このまま開く」を使い、マルウェア、破損、変更の警告では STOP 分岐で中止する">
+</p>
+
 1. `NetSpeedMenu-1.2-universal.dmg` をダブルクリックします。
 2. `网速.app` を隣の Applications フォルダへドラッグします。
 3. 「アプリケーション」フォルダで `网速` を探します。
