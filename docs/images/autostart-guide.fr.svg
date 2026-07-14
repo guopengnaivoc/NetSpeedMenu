@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc" fill="#17324d">
+  <title id="title">NetSpeedMenu : lancement automatique à l’ouverture de session</title>
+  <desc id="desc">Guide en cinq étapes : installer NetSpeedMenu dans Applications, l’ouvrir manuellement au moins une fois pour activer par défaut le lancement à l’ouverture de session, puis activer 网速 dans Réglages Système, Général, Ouverture et extensions si une autorisation est demandée. L’app se lance ensuite à chaque ouverture de session et apparaît normalement dans la zone d’état à droite de la barre des menus ; macOS peut la masquer si l’espace est insuffisant. La touche Commande permet de la faire glisser, mais l’app ne peut pas imposer une position fixe à l’extrême droite.</desc>
+  <defs>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7faff"/><stop offset="1" stop-color="#eef3fb"/></linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b6fd3"/><stop offset="1" stop-color="#11a9c6"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-25%" width="120%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#18324f" flood-opacity="0.13"/></filter>
+    <marker id="arrowBlue" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L14,7 L0,14 Z" fill="#1677d2"/></marker>
+    <marker id="arrowGreen" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L14,7 L0,14 Z" fill="#16885b"/></marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .panel { fill: #ffffff; stroke: #dce6f1; stroke-width: 2; filter: url(#shadow); }
+      .step { fill: url(#brand); }
+      .stepText { fill: #ffffff; font-size: 24px; font-weight: 800; text-anchor: middle; dominant-baseline: middle; }
+      .panelTitle { font-size: 22.5px; font-weight: 750; }
+      .body { font-size: 17.5px; fill: #526a81; }
+      .small { font-size: 16px; fill: #62788e; }
+      .buttonText { font-size: 12.5px; font-weight: 750; text-anchor: middle; dominant-baseline: middle; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="700" rx="32" fill="url(#pageBg)"/>
+  <rect x="0" y="0" width="1200" height="110" rx="32" fill="url(#brand)"/><rect x="0" y="80" width="1200" height="30" fill="url(#brand)"/>
+  <text x="600" y="48" text-anchor="middle" font-size="33" font-weight="800" fill="#ffffff">NetSpeedMenu : lancement automatique à l’ouverture de session</text>
+  <text x="600" y="82" text-anchor="middle" font-size="16.5" font-weight="600" fill="#eaf8ff">Ouvrir une fois · Autoriser si demandé · L’app se relance à chaque ouverture de session</text>
+
+  <!-- 1: Install in Applications -->
+  <rect class="panel" x="50" y="125" width="1100" height="82" rx="22"/>
+  <circle class="step" cx="100" cy="166" r="28"/><text class="stepText" x="100" y="167">1</text>
+  <text class="panelTitle" x="148" y="156">Installer dans Applications</text>
+  <text class="body" x="148" y="184">Faites glisser « 网速.app » dans /Applications afin de conserver un emplacement stable.</text>
+  <g transform="translate(940 142)">
+    <rect x="0" y="6" width="43" height="43" rx="11" fill="url(#brand)"/><path d="M22 14 V27 M15 21 L22 14 L29 21 M22 41 V28 M15 34 L22 41 L29 34" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M62 28 H94" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+    <path d="M111 16 H135 L144 8 H190 Q197 8 197 15 V48 Q197 55 190 55 H118 Q111 55 111 48 Z" fill="#7ec3f5" stroke="#2177bd" stroke-width="2"/>
+  </g>
+  <path d="M100 210 V215" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+
+  <!-- 2: First manual launch -->
+  <rect class="panel" x="50" y="221" width="1100" height="93" rx="22"/>
+  <circle class="step" cx="100" cy="267" r="28"/><text class="stepText" x="100" y="268">2</text>
+  <text class="panelTitle" x="148" y="251">Ouvrir manuellement au moins une fois</text>
+  <text class="body" x="148" y="279">Au premier lancement, le lancement à l’ouverture de session est activé par défaut.</text>
+  <text x="148" y="301" font-size="16.5" font-weight="750" fill="#b06b16">Une installation sans jamais ouvrir l’app n’active pas le lancement automatique.</text>
+  <rect x="900" y="240" width="220" height="54" rx="15" fill="#fff4e5" stroke="#e4a14e" stroke-width="2"/>
+  <circle cx="929" cy="267" r="17" fill="#e99a34"/><path d="M929 257 V270 M929 278 V279" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <text x="1020" y="268" text-anchor="middle" font-size="14.5" font-weight="800" fill="#9b5c0d">1re ouverture requise</text>
+  <path d="M100 317 V322" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+
+  <!-- 3: Approval -->
+  <rect class="panel" x="50" y="328" width="1100" height="95" rx="22"/>
+  <circle class="step" cx="100" cy="375" r="28"/><text class="stepText" x="100" y="376">3</text>
+  <text class="panelTitle" x="148" y="357">Si une autorisation reste nécessaire</text>
+  <text class="body" x="148" y="385">Cliquez sur « 打开登录项设置 » → Réglages Système → Général →</text>
+  <text class="body" x="148" y="407">Ouverture et extensions (« Ouverture » sur les anciennes versions), puis activez « 网速 ».</text>
+  <rect x="847" y="344" width="273" height="36" rx="10" fill="#16885b"/>
+  <text class="buttonText" x="983.5" y="363" fill="#ffffff">打开登录项设置</text>
+  <path d="M983 386 V393" fill="none" stroke="#16885b" stroke-width="4" marker-end="url(#arrowGreen)"/>
+  <rect x="925" y="397" width="118" height="18" rx="9" fill="#d5dce3"/><circle cx="1033" cy="406" r="8" fill="#16885b"/>
+  <text x="1053" y="412" font-size="13" font-weight="800" fill="#16885b">Autoriser</text>
+  <path d="M100 426 V431" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+
+  <!-- 4: Subsequent sign-ins -->
+  <rect class="panel" x="50" y="437" width="1100" height="82" rx="22"/>
+  <circle class="step" cx="100" cy="478" r="28"/><text class="stepText" x="100" y="479">4</text>
+  <text class="panelTitle" x="148" y="462">L’app se lance à chaque ouverture de session</text>
+  <text class="body" x="148" y="488">Normalement visible dans la zone d’état à droite de la barre des menus ;</text>
+  <text x="148" y="509" font-size="16.5" fill="#526a81">macOS peut la masquer temporairement si l’espace est insuffisant.</text>
+  <g transform="translate(910 451)">
+    <rect width="210" height="51" rx="10" fill="#f5f7fa" stroke="#b9c7d5" stroke-width="2"/><rect width="210" height="18" rx="10" fill="#dfe6ed"/><rect y="10" width="210" height="8" fill="#dfe6ed"/>
+    <circle cx="13" cy="9" r="3" fill="#8c9bab"/><circle cx="24" cy="9" r="3" fill="#8c9bab"/>
+    <rect x="142" y="3" width="60" height="38" rx="6" fill="#ffffff" stroke="#1677d2" stroke-width="2"/><text x="197" y="29" text-anchor="end" font-size="10" font-weight="800">↑1.2M/s</text><text x="197" y="39" text-anchor="end" font-size="10" font-weight="800">↓8.4M/s</text>
+  </g>
+  <path d="M100 522 V527" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+
+  <!-- 5: Position is user-controlled -->
+  <rect class="panel" x="50" y="533" width="1100" height="82" rx="22"/>
+  <circle class="step" cx="100" cy="574" r="28"/><text class="stepText" x="100" y="575">5</text>
+  <text class="panelTitle" x="148" y="558">macOS et l’utilisateur choisissent la position exacte</text>
+  <text class="body" x="148" y="585">L’app ne peut pas imposer une position fixe à l’extrême droite.</text>
+  <text x="148" y="607" font-size="16.5" fill="#526a81">Maintenez la touche Commande enfoncée et faites glisser l’élément.</text>
+  <g transform="translate(930 550)">
+    <rect width="60" height="43" rx="10" fill="#eef3f8" stroke="#9aabba" stroke-width="2"/><text x="30" y="31" text-anchor="middle" font-size="28" font-weight="700">⌘</text>
+    <path d="M78 22 H164" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/><circle cx="182" cy="22" r="13" fill="#eaf4ff" stroke="#1677d2" stroke-width="3"/>
+  </g>
+
+  <rect x="50" y="630" width="1100" height="52" rx="17" fill="#eaf8f1" stroke="#9acdb5" stroke-width="2"/>
+  <circle cx="84" cy="656" r="14" fill="#16885b"/><path d="M77 656 L82 661 L91 650" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="600" y="662" text-anchor="middle" font-size="15.5" font-weight="750" fill="#166447">Sur chaque Mac et pour chaque compte, ouvrez et autorisez l’app une fois ; lancement à la session, pas à l’installation.</text>
+</svg>
