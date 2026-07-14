@@ -1,6 +1,6 @@
 # Security notice
 
-The NetSpeedMenu 1.3 app is ad-hoc signed on the developer's Mac, while the PKG installer itself is unsigned. Neither uses an Apple Developer ID signature, and the release has not been notarized by Apple. macOS can therefore warn that the developer cannot be verified or that Apple cannot check the app for malicious software.
+The NetSpeedMenu 1.4 app is ad-hoc signed on the developer's Mac, while the PKG installer itself is unsigned. Neither uses an Apple Developer ID signature, and the release has not been notarized by Apple. macOS can therefore warn that the developer cannot be verified or that Apple cannot check the app for malicious software.
 
 Only download release files from this repository. Verify `SHA256SUMS` before overriding a Gatekeeper warning. Do not bypass a warning that explicitly says the app contains malware, will damage the computer, is damaged, or has been modified.
 
