@@ -2,7 +2,7 @@
   <img src="images/app-icon.png" width="156" alt="Icône NetSpeedMenu">
 </p>
 
-# Guide d’utilisation de NetSpeedMenu 1.2
+# Guide d’utilisation de NetSpeedMenu 1.3
 
 [简体中文](README.zh-CN.md) · [English](README.en.md) · [日本語](README.ja.md) · [Accueil](../README.md)
 
@@ -13,7 +13,8 @@ NetSpeedMenu (« 网速 ») est un petit utilitaire macOS qui affiche le débit 
 La fenêtre de réglages contient :
 
 - l’option de lancement silencieux à l’ouverture de session ;
-- l’état actuel de l’élément de connexion ;
+- l’état actuel de l’élément d’ouverture ;
+- un bouton ouvrant directement Réglages Système lorsqu’une autorisation est requise ;
 - la description, la version et l’auteur ;
 - le bouton « 退出网速 » (« Quitter NetSpeedMenu »).
 
@@ -25,18 +26,18 @@ L’application fonctionne sous macOS 13 ou version ultérieure, sur Mac Intel e
 
 ## Télécharger et vérifier
 
-Téléchargez `NetSpeedMenu-1.2-universal.dmg` depuis la page [Releases](../../../releases/latest) de ce dépôt. Le DMG est la méthode recommandée.
+Téléchargez `NetSpeedMenu-1.3-universal.dmg` depuis la page [Releases](../../../releases/latest) de ce dépôt. Le DMG est la méthode recommandée.
 
 Vérifiez le fichier dans Terminal :
 
 ```bash
-shasum -a 256 ~/Downloads/NetSpeedMenu-1.2-universal.dmg
+shasum -a 256 ~/Downloads/NetSpeedMenu-1.3-universal.dmg
 ```
 
 SHA-256 attendu :
 
 ```text
-92d47b7f0587d4daa878a29cfe73cb1a4271dda9fdb80796021604e430b7845e
+cbae75d931538aef45ee8ea4a2efdabdb9adc50d99f2bff95795eed9a01c7a47
 ```
 
 ## Installation
@@ -47,12 +48,12 @@ Suivez d’abord les flèches du guide visuel. Le chemin vert s’applique uniqu
   <img src="images/install-guide.fr.svg" width="900" alt="Guide visuel : pour une alerte ordinaire d’app non signée ou non notariée, ne pas choisir Placer dans la corbeille et utiliser Ouvrir quand même ; arrêter en cas d’alerte de logiciel malveillant, d’app endommagée ou modifiée">
 </p>
 
-1. Double-cliquez sur `NetSpeedMenu-1.2-universal.dmg`.
+1. Double-cliquez sur `NetSpeedMenu-1.3-universal.dmg`.
 2. Faites glisser `网速.app` vers le dossier Applications affiché à côté.
 3. Ouvrez le dossier Applications et trouvez `网速`.
 4. Suivez les instructions de premier lancement ci-dessous.
 
-Le PKG est également disponible. Faites un clic avec la touche Contrôle sur `NetSpeedMenu-1.2-universal.pkg`, choisissez **Ouvrir**, puis suivez l’installateur. Un mot de passe administrateur peut être demandé.
+Le PKG est également disponible. Faites un clic avec la touche Contrôle sur `NetSpeedMenu-1.3-universal.pkg`, choisissez **Ouvrir**, puis suivez l’installateur. Un mot de passe administrateur peut être demandé.
 
 ## Pourquoi macOS affiche un avertissement
 
@@ -73,6 +74,20 @@ Ces messages ne prouvent pas à eux seuls qu’un logiciel malveillant a été d
 5. Confirmez **Ouvrir** et saisissez votre mot de passe si nécessaire.
 
 Apple indique que le bouton Ouvrir quand même est normalement disponible pendant environ une heure après la tentative bloquée. L’application sera ensuite enregistrée comme exception. Consultez les [instructions officielles d’Apple](https://support.apple.com/guide/mac-help/mh40617/mac).
+
+## Lancement automatique à l’ouverture de session
+
+<p align="center">
+  <img src="images/autostart-guide.fr.svg" width="900" alt="Guide visuel : ouvrir correctement l’app installée une première fois, autoriser son élément d’ouverture si nécessaire, puis la lancer à chaque ouverture de session et l’afficher normalement dans la zone d’état à droite de la barre des menus ; maintenir Commande et faire glisser pour régler sa position">
+</p>
+
+1. Placez l’app dans Applications et ouvrez-la correctement au moins une fois. Une simple copie jamais ouverte ne peut pas enregistrer l’élément d’ouverture de l’utilisateur actuel.
+2. Le lancement à l’ouverture de session est activé par défaut. Son état doit indiquer qu’il est activé.
+3. Si une autorisation reste nécessaire, cliquez sur le bouton chinois **打开登录项设置** (« Ouvrir les réglages des éléments d’ouverture »), puis ouvrez **Réglages Système → Général → Ouverture et extensions** et activez **网速**. Les anciennes versions prises en charge peuvent afficher seulement **Ouverture**.
+4. L’app se lance ensuite sans afficher de fenêtre à chaque ouverture de session, y compris après un redémarrage, et apparaît normalement dans la zone d’état à droite de la barre des menus. macOS peut la masquer temporairement si l’espace est insuffisant.
+5. L’app ne peut rejoindre que la zone d’état de la barre des menus ; macOS gère les éléments système et l’ordre exact. Maintenez la touche Commande enfoncée et faites glisser l’indicateur de débit pour le repositionner. L’app ne peut pas imposer une position fixe à l’extrême droite.
+
+Sur chaque nouveau Mac et pour chaque compte utilisateur d’un Mac partagé, l’app doit être ouverte une première fois et recevoir les autorisations requises. Copier l’app puis redémarrer sans jamais l’ouvrir n’enregistre pas d’élément d’ouverture.
 
 ## En cas d’avertissement plus grave
 
@@ -105,6 +120,6 @@ L’application lit uniquement les compteurs cumulés d’octets des interfaces 
 2. Cliquez sur 退出网速 (Quitter NetSpeedMenu).
 3. Placez `/Applications/网速.app` dans la Corbeille.
 
-Version : 1.2
+Version : 1.3
 
 Auteur : Guo Peng (郭鹏)

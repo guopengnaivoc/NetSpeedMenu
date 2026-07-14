@@ -7,6 +7,8 @@ DMG="$ROOT/outputs/网速.dmg"
 APP="$ROOT/outputs/网速.app"
 RW_DMG="$ROOT/work/网速-rw.dmg"
 MOUNT="$ROOT/work/dmg-mount"
+VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$ROOT/Resources/Info.plist")
+VERSIONED_DMG="$ROOT/outputs/NetSpeedMenu-$VERSION-universal.dmg"
 
 "$ROOT/build-app.sh"
 
@@ -42,5 +44,7 @@ clang -fobjc-arc -O2 \
     "$ROOT/Tools/set-file-icon.m" \
     -o "$ROOT/work/set-file-icon"
 "$ROOT/work/set-file-icon" "$ROOT/Resources/AppIcon.icns" "$DMG"
+cp "$DMG" "$VERSIONED_DMG"
 
 echo "$DMG"
+echo "$VERSIONED_DMG"

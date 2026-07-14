@@ -2,7 +2,7 @@
   <img src="images/app-icon.png" width="156" alt="NetSpeedMenu icon">
 </p>
 
-# NetSpeedMenu 1.2 User Guide
+# NetSpeedMenu 1.3 User Guide
 
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Home](../README.md)
 
@@ -14,6 +14,7 @@ The settings window provides:
 
 - a “Launch silently at login” switch;
 - the current login-item status;
+- a direct System Settings button when login-item approval is required;
 - app description, version, and author information;
 - a “退出网速” (Quit NetSpeedMenu) button.
 
@@ -25,18 +26,18 @@ It supports macOS 13 or later on both Intel and Apple Silicon Macs.
 
 ## Download and verify
 
-Download `NetSpeedMenu-1.2-universal.dmg` from this repository’s [Releases](../../../releases/latest) page. The DMG is the recommended installation method.
+Download `NetSpeedMenu-1.3-universal.dmg` from this repository’s [Releases](../../../releases/latest) page. The DMG is the recommended installation method.
 
 Verify the download in Terminal:
 
 ```bash
-shasum -a 256 ~/Downloads/NetSpeedMenu-1.2-universal.dmg
+shasum -a 256 ~/Downloads/NetSpeedMenu-1.3-universal.dmg
 ```
 
 Expected SHA-256:
 
 ```text
-92d47b7f0587d4daa878a29cfe73cb1a4271dda9fdb80796021604e430b7845e
+cbae75d931538aef45ee8ea4a2efdabdb9adc50d99f2bff95795eed9a01c7a47
 ```
 
 ## Install
@@ -47,12 +48,12 @@ Follow the arrows in the visual guide first. The green path applies only to ordi
   <img src="images/install-guide.en.svg" width="900" alt="Visual guide: for an ordinary unsigned or unnotarized-app alert, avoid Move to Trash and use Open Anyway in Privacy &amp; Security; stop for malware, damage, or modification alerts">
 </p>
 
-1. Double-click `NetSpeedMenu-1.2-universal.dmg`.
+1. Double-click `NetSpeedMenu-1.3-universal.dmg`.
 2. Drag `网速.app` to the adjacent Applications folder.
 3. Open the Applications folder and locate `网速`.
 4. Follow the first-launch instructions below.
 
-You can also use the PKG. Control-click `NetSpeedMenu-1.2-universal.pkg`, choose **Open**, and follow Installer. An administrator password may be required.
+You can also use the PKG. Control-click `NetSpeedMenu-1.3-universal.pkg`, choose **Open**, and follow Installer. An administrator password may be required.
 
 ## Why macOS shows a warning
 
@@ -75,6 +76,20 @@ These messages do not by themselves prove that malware was found, but they must 
 Apple notes that Open Anyway is normally available for about one hour after the blocked launch. Once approved, the app is saved as an exception. See [Apple’s official instructions](https://support.apple.com/guide/mac-help/mh40617/mac).
 
 You can also Control-click the app and choose **Open**. If that remains blocked, use Privacy & Security as described above.
+
+## Launch automatically at login
+
+<p align="center">
+  <img src="images/autostart-guide.en.svg" width="900" alt="Visual guide: open the installed app successfully once, approve its login item if needed, then it starts at each login and normally appears in the status area on the right side of the menu bar; hold Command while dragging to adjust its position">
+</p>
+
+1. Move the app to Applications and successfully open it at least once. Copying it without ever opening it cannot register a login item for the current user.
+2. “Launch silently at login” is on by default. Its status should read Enabled.
+3. If approval is still required, click the Chinese button **打开登录项设置** (“Open Login Item Settings”), then open **System Settings → General → Login Items & Extensions** and enable **网速**. Earlier supported macOS releases may label the panel **Login Items**.
+4. The app then starts silently at each login, including the login following a restart, and normally appears in the status area on the right side of the menu bar. macOS may temporarily hide it when menu-bar space is limited.
+5. The app can only join the menu-bar status area; macOS controls system items and exact ordering. Hold the Command key while dragging the speed display to reposition it. The app cannot force itself to remain at the far right.
+
+Each new Mac and each user account on a shared Mac must complete its own first successful launch and any required approval. Copying the app and restarting without ever opening it does not register a login item.
 
 ## Stop when the warning is more serious
 
@@ -107,6 +122,6 @@ The app only reads cumulative network-interface byte counters exposed by macOS. 
 2. Click 退出网速 (Quit NetSpeedMenu).
 3. Move `/Applications/网速.app` to the Trash.
 
-Version: 1.2
+Version: 1.3
 
 Author: Guo Peng (郭鹏)

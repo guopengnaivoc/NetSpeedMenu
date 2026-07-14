@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc" fill="#17324d">
+  <title id="title">NetSpeedMenu：ログイン時の自動起動</title>
+  <desc id="desc">5 ステップの図解。网速をアプリケーションにインストールし、初回は少なくとも一度手動で開いて、ログイン時の自動起動を既定で有効にします。承認が必要な場合は、システム設定、一般、ログイン項目と機能拡張で网速をオンにします。その後はログインのたびに自動起動し、通常はメニューバー右側のステータス領域に表示されます。空き領域が少ないと macOS が一時的に隠す場合があります。Command キーを押したままドラッグして位置を変更できますが、常に一番右へ固定することはできません。</desc>
+  <defs>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7faff"/><stop offset="1" stop-color="#eef3fb"/></linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b6fd3"/><stop offset="1" stop-color="#11a9c6"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-25%" width="120%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#18324f" flood-opacity="0.13"/></filter>
+    <marker id="arrowBlue" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L14,7 L0,14 Z" fill="#1677d2"/></marker>
+    <marker id="arrowGreen" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L14,7 L0,14 Z" fill="#16885b"/></marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+      .panel { fill: #ffffff; stroke: #dce6f1; stroke-width: 2; filter: url(#shadow); }
+      .step { fill: url(#brand); }
+      .stepText { fill: #ffffff; font-size: 24px; font-weight: 800; text-anchor: middle; dominant-baseline: middle; }
+      .panelTitle { font-size: 23px; font-weight: 750; }
+      .body { font-size: 18px; fill: #526a81; }
+      .small { font-size: 16px; fill: #62788e; }
+      .buttonText { font-size: 14px; font-weight: 750; text-anchor: middle; dominant-baseline: middle; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="700" rx="32" fill="url(#pageBg)"/>
+  <rect x="0" y="0" width="1200" height="110" rx="32" fill="url(#brand)"/><rect x="0" y="80" width="1200" height="30" fill="url(#brand)"/>
+  <text x="600" y="48" text-anchor="middle" font-size="36" font-weight="800" fill="#ffffff">NetSpeedMenu：ログイン時の自動起動</text>
+  <text x="600" y="82" text-anchor="middle" font-size="17.5" font-weight="600" fill="#eaf8ff">一度開く · 必要ならログイン項目を許可 · 以後はログインのたびに自動起動</text>
+
+  <!-- 1: Install in Applications -->
+  <rect class="panel" x="50" y="125" width="1100" height="82" rx="22"/>
+  <circle class="step" cx="100" cy="166" r="28"/><text class="stepText" x="100" y="167">1</text>
+  <text class="panelTitle" x="148" y="156">「アプリケーション」にインストール</text>
+  <text class="body" x="148" y="184">网速.app を /Applications にドラッグし、アプリの場所を固定します。</text>
+  <g transform="translate(940 142)">
+    <rect x="0" y="6" width="43" height="43" rx="11" fill="url(#brand)"/><path d="M22 14 V27 M15 21 L22 14 L29 21 M22 41 V28 M15 34 L22 41 L29 34" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M62 28 H94" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+    <path d="M111 16 H135 L144 8 H190 Q197 8 197 15 V48 Q197 55 190 55 H118 Q111 55 111 48 Z" fill="#7ec3f5" stroke="#2177bd" stroke-width="2"/>
+  </g>
+  <path d="M100 210 V215" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+
+  <!-- 2: First manual launch -->
+  <rect class="panel" x="50" y="221" width="1100" height="93" rx="22"/>
+  <circle class="step" cx="100" cy="267" r="28"/><text class="stepText" x="100" y="268">2</text>
+  <text class="panelTitle" x="148" y="251">初回は必ず一度手動で開く</text>
+  <text class="body" x="148" y="279">初回起動時に「ログイン時に自動起動」を既定で有効にします。</text>
+  <text x="148" y="301" font-size="17" font-weight="750" fill="#b06b16">インストールしただけで一度も開いていない場合、自動起動しません。</text>
+  <rect x="900" y="240" width="220" height="54" rx="15" fill="#fff4e5" stroke="#e4a14e" stroke-width="2"/>
+  <circle cx="929" cy="267" r="17" fill="#e99a34"/><path d="M929 257 V270 M929 278 V279" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <text x="1020" y="268" text-anchor="middle" font-size="16" font-weight="800" fill="#9b5c0d">初回起動が必要</text>
+  <path d="M100 317 V322" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+
+  <!-- 3: Approval -->
+  <rect class="panel" x="50" y="328" width="1100" height="95" rx="22"/>
+  <circle class="step" cx="100" cy="375" r="28"/><text class="stepText" x="100" y="376">3</text>
+  <text class="panelTitle" x="148" y="357">承認が必要な場合</text>
+  <text class="body" x="148" y="385">「打开登录项设置」→ システム設定 → 一般 →</text>
+  <text class="body" x="148" y="407">ログイン項目と機能拡張（旧版はログイン項目）で「网速」をオン。</text>
+  <rect x="847" y="344" width="273" height="36" rx="10" fill="#16885b"/>
+  <text class="buttonText" x="983.5" y="363" fill="#ffffff">打开登录项设置</text>
+  <path d="M983 386 V393" fill="none" stroke="#16885b" stroke-width="4" marker-end="url(#arrowGreen)"/>
+  <rect x="925" y="397" width="118" height="18" rx="9" fill="#d5dce3"/><circle cx="1033" cy="406" r="8" fill="#16885b"/>
+  <text x="1053" y="412" font-size="14" font-weight="800" fill="#16885b">許可</text>
+  <path d="M100 426 V431" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+
+  <!-- 4: Subsequent sign-ins -->
+  <rect class="panel" x="50" y="437" width="1100" height="82" rx="22"/>
+  <circle class="step" cx="100" cy="478" r="28"/><text class="stepText" x="100" y="479">4</text>
+  <text class="panelTitle" x="148" y="468">ログインのたびに自動起動</text>
+  <text class="body" x="148" y="497">通常は右側の領域に表示。空きが少ないと一時的に隠れる場合があります。</text>
+  <g transform="translate(910 451)">
+    <rect width="210" height="51" rx="10" fill="#f5f7fa" stroke="#b9c7d5" stroke-width="2"/><rect width="210" height="18" rx="10" fill="#dfe6ed"/><rect y="10" width="210" height="8" fill="#dfe6ed"/>
+    <circle cx="13" cy="9" r="3" fill="#8c9bab"/><circle cx="24" cy="9" r="3" fill="#8c9bab"/>
+    <rect x="142" y="3" width="60" height="38" rx="6" fill="#ffffff" stroke="#1677d2" stroke-width="2"/><text x="197" y="29" text-anchor="end" font-size="10" font-weight="800">↑1.2M/s</text><text x="197" y="39" text-anchor="end" font-size="10" font-weight="800">↓8.4M/s</text>
+  </g>
+  <path d="M100 522 V527" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+
+  <!-- 5: Position is user-controlled -->
+  <rect class="panel" x="50" y="533" width="1100" height="82" rx="22"/>
+  <circle class="step" cx="100" cy="574" r="28"/><text class="stepText" x="100" y="575">5</text>
+  <text class="panelTitle" x="148" y="558">正確な位置は macOS とユーザーが管理</text>
+  <text class="body" x="148" y="585">アプリを常に一番右へ固定することはできません。</text>
+  <text x="148" y="607" font-size="17" fill="#526a81">Command キーを押しながら、項目を希望の位置へドラッグします。</text>
+  <g transform="translate(930 550)">
+    <rect width="60" height="43" rx="10" fill="#eef3f8" stroke="#9aabba" stroke-width="2"/><text x="30" y="31" text-anchor="middle" font-size="28" font-weight="700">⌘</text>
+    <path d="M78 22 H164" fill="none" stroke="#1677d2" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)"/><circle cx="182" cy="22" r="13" fill="#eaf4ff" stroke="#1677d2" stroke-width="3"/>
+  </g>
+
+  <rect x="50" y="630" width="1100" height="52" rx="17" fill="#eaf8f1" stroke="#9acdb5" stroke-width="2"/>
+  <circle cx="84" cy="656" r="14" fill="#16885b"/><path d="M77 656 L82 661 L91 650" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="600" y="662" text-anchor="middle" font-size="16.5" font-weight="750" fill="#166447">新しい Mac と各ユーザーで一度開いて承認が必要。自動起動はインストール時ではなくログイン時です。</text>
+</svg>

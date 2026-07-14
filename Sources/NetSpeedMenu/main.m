@@ -10,6 +10,9 @@ typedef struct {
     uint64_t downloaded;
 } NetworkTotals;
 
+static NSString * const AutoLaunchPreferenceKey = @"AutoLaunchEnabled";
+static NSString * const StatusItemAutosaveName = @"local.codex.NetSpeedMenu.primary";
+
 static NetworkTotals ReadNetworkTotals(void) {
     struct ifaddrs *interfaces = NULL;
     NetworkTotals totals = {0, 0};
@@ -61,7 +64,11 @@ static NetworkTotals ReadNetworkTotals(void) {
     _downloadLabel.frame = NSMakeRect(0, 0, self.bounds.size.width, rowHeight + 1);
 }
 
-- (void)mouseDown:(NSEvent *)event {}
+- (NSView *)hitTest:(NSPoint)point {
+    // Let the status-bar button receive Command-drag events so users can
+    // position the item where they prefer. The button has no normal action.
+    return nil;
+}
 
 + (NSString *)formatSpeed:(double)value {
     NSArray<NSString *> *units = @[@"B/s", @"K/s", @"M/s", @"G/s"];
@@ -95,14 +102,17 @@ static NetworkTotals ReadNetworkTotals(void) {
     NSWindow *_settingsWindow;
     NSButton *_autoLaunchButton;
     NSTextField *_autoLaunchStatusLabel;
+    NSButton *_loginItemActionButton;
+    NSError *_lastAutoLaunchError;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     _statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:57];
+    _statusItem.autosaveName = StatusItemAutosaveName;
     _speedView = [[SpeedView alloc] initWithFrame:NSMakeRect(0, 0, 57, NSStatusBar.systemStatusBar.thickness)];
     _speedView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     [_statusItem.button addSubview:_speedView];
-    _statusItem.button.enabled = NO;
+    _statusItem.button.enabled = YES;
     [_speedView updateUpload:0 download:0];
 
     _previous = ReadNetworkTotals();
@@ -148,25 +158,38 @@ static NetworkTotals ReadNetworkTotals(void) {
 
 - (void)applyStoredAutoLaunchPreference {
     NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
-    id storedValue = [defaults objectForKey:@"AutoLaunchEnabled"];
-    BOOL shouldEnable = storedValue ? [storedValue boolValue] : YES;
-    if (!storedValue) [defaults setBool:YES forKey:@"AutoLaunchEnabled"];
+    id storedValue = [defaults objectForKey:AutoLaunchPreferenceKey];
+    if (storedValue) {
+        // After first launch, System Settings is the source of truth. Do not
+        // silently undo a choice the user made outside this app.
+        return;
+    }
+
+    [defaults setBool:YES forKey:AutoLaunchPreferenceKey];
 
     NSError *error = nil;
-    [self setLoginItemEnabled:shouldEnable error:&error];
+    BOOL success = [self setLoginItemEnabled:YES error:&error];
+    _lastAutoLaunchError = success ? nil : error;
 }
 
 - (void)autoLaunchChanged:(NSButton *)sender {
-    BOOL shouldEnable = sender.state == NSControlStateValueOn;
+    BOOL awaitingApproval = NO;
+    if (@available(macOS 13.0, *)) {
+        awaitingApproval = SMAppService.mainAppService.status == SMAppServiceStatusRequiresApproval;
+    }
+    // Clicking the mixed “waiting for approval” state means cancel.
+    // Approval itself is handled by the adjacent System Settings button.
+    BOOL shouldEnable = awaitingApproval ? NO : sender.state == NSControlStateValueOn;
     NSError *error = nil;
     BOOL success = [self setLoginItemEnabled:shouldEnable error:&error];
 
     if (success) {
-        [NSUserDefaults.standardUserDefaults setBool:shouldEnable forKey:@"AutoLaunchEnabled"];
+        [NSUserDefaults.standardUserDefaults setBool:shouldEnable forKey:AutoLaunchPreferenceKey];
+        _lastAutoLaunchError = nil;
     } else {
-        sender.state = shouldEnable ? NSControlStateValueOff : NSControlStateValueOn;
+        _lastAutoLaunchError = error;
         NSAlert *alert = [NSAlert new];
-        alert.messageText = @"无法修改开机启动设置";
+        alert.messageText = @"无法修改登录启动设置";
         alert.informativeText = error.localizedDescription ?: @"请稍后重试。";
         [alert beginSheetModalForWindow:_settingsWindow completionHandler:nil];
     }
@@ -176,28 +199,75 @@ static NetworkTotals ReadNetworkTotals(void) {
 - (void)updateAutoLaunchStatus {
     if (!_autoLaunchButton || !_autoLaunchStatusLabel) return;
 
-    BOOL desired = [NSUserDefaults.standardUserDefaults boolForKey:@"AutoLaunchEnabled"];
-    _autoLaunchButton.state = desired ? NSControlStateValueOn : NSControlStateValueOff;
+    BOOL desired = [NSUserDefaults.standardUserDefaults boolForKey:AutoLaunchPreferenceKey];
+    _autoLaunchButton.allowsMixedState = NO;
+    _loginItemActionButton.hidden = YES;
+    _loginItemActionButton.title = @"打开登录项设置";
+    _autoLaunchStatusLabel.toolTip = nil;
 
     if (@available(macOS 13.0, *)) {
         switch (SMAppService.mainAppService.status) {
             case SMAppServiceStatusEnabled:
-                _autoLaunchStatusLabel.stringValue = @"已启用：登录后仅在菜单栏静默运行";
+                _lastAutoLaunchError = nil;
+                _autoLaunchButton.state = NSControlStateValueOn;
+                _autoLaunchStatusLabel.stringValue = @"已启用：重新登录或重启后会静默运行";
                 _autoLaunchStatusLabel.textColor = NSColor.secondaryLabelColor;
                 break;
             case SMAppServiceStatusRequiresApproval:
-                _autoLaunchStatusLabel.stringValue = @"需要在“系统设置 → 通用 → 登录项”中允许";
+                _lastAutoLaunchError = nil;
+                _autoLaunchButton.allowsMixedState = YES;
+                _autoLaunchButton.state = NSControlStateValueMixed;
+                _autoLaunchStatusLabel.stringValue = @"还差一步：请在系统登录项中允许网速";
                 _autoLaunchStatusLabel.textColor = NSColor.systemOrangeColor;
+                _loginItemActionButton.hidden = NO;
                 break;
             case SMAppServiceStatusNotRegistered:
-                _autoLaunchStatusLabel.stringValue = @"已关闭：登录系统时不会自动启动";
-                _autoLaunchStatusLabel.textColor = NSColor.secondaryLabelColor;
+                _autoLaunchButton.state = NSControlStateValueOff;
+                if (desired && _lastAutoLaunchError) {
+                    _autoLaunchStatusLabel.stringValue = @"尚未启用：请重试注册登录项";
+                    _autoLaunchStatusLabel.textColor = NSColor.systemRedColor;
+                    _loginItemActionButton.title = @"重试启用";
+                    _loginItemActionButton.hidden = NO;
+                    _autoLaunchStatusLabel.toolTip = _lastAutoLaunchError.localizedDescription;
+                } else {
+                    _autoLaunchStatusLabel.stringValue = @"已关闭：登录系统时不会自动启动";
+                    _autoLaunchStatusLabel.textColor = NSColor.secondaryLabelColor;
+                }
                 break;
             case SMAppServiceStatusNotFound:
+                _autoLaunchButton.allowsMixedState = YES;
+                _autoLaunchButton.state = NSControlStateValueMixed;
                 _autoLaunchStatusLabel.stringValue = @"暂时无法读取登录项状态";
                 _autoLaunchStatusLabel.textColor = NSColor.systemRedColor;
+                if (desired) {
+                    _loginItemActionButton.title = @"重试启用";
+                    _loginItemActionButton.hidden = NO;
+                }
+                _autoLaunchStatusLabel.toolTip = _lastAutoLaunchError.localizedDescription;
                 break;
         }
+    }
+}
+
+- (void)loginItemActionClicked:(NSButton *)sender {
+    if (@available(macOS 13.0, *)) {
+        if (SMAppService.mainAppService.status == SMAppServiceStatusRequiresApproval) {
+            [SMAppService openSystemSettingsLoginItems];
+            return;
+        }
+
+        NSError *error = nil;
+        BOOL success = [self setLoginItemEnabled:YES error:&error];
+        _lastAutoLaunchError = success ? nil : error;
+        if (success) {
+            [NSUserDefaults.standardUserDefaults setBool:YES forKey:AutoLaunchPreferenceKey];
+        } else {
+            NSAlert *alert = [NSAlert new];
+            alert.messageText = @"无法启用登录启动";
+            alert.informativeText = error.localizedDescription ?: @"请稍后重试。";
+            [alert beginSheetModalForWindow:_settingsWindow completionHandler:nil];
+        }
+        [self updateAutoLaunchStatus];
     }
 }
 
@@ -246,7 +316,7 @@ static NetworkTotals ReadNetworkTotals(void) {
     topSeparator.boxType = NSBoxSeparator;
     [content addSubview:topSeparator];
 
-    _autoLaunchButton = [NSButton checkboxWithTitle:@"开机自动静默启动"
+    _autoLaunchButton = [NSButton checkboxWithTitle:@"登录后自动静默启动"
                                              target:self
                                              action:@selector(autoLaunchChanged:)];
     _autoLaunchButton.frame = NSMakeRect(28, 182, 260, 26);
@@ -254,10 +324,19 @@ static NetworkTotals ReadNetworkTotals(void) {
     [content addSubview:_autoLaunchButton];
 
     _autoLaunchStatusLabel = [self labelWithText:@""
-                                           frame:NSMakeRect(48, 156, 380, 22)
+                                           frame:NSMakeRect(48, 153, 245, 22)
                                             font:[NSFont systemFontOfSize:12]
                                            color:NSColor.secondaryLabelColor];
     [content addSubview:_autoLaunchStatusLabel];
+
+    _loginItemActionButton = [NSButton buttonWithTitle:@"打开登录项设置"
+                                                target:self
+                                                action:@selector(loginItemActionClicked:)];
+    _loginItemActionButton.frame = NSMakeRect(302, 148, 130, 28);
+    _loginItemActionButton.bezelStyle = NSBezelStyleRounded;
+    _loginItemActionButton.font = [NSFont systemFontOfSize:12];
+    _loginItemActionButton.hidden = YES;
+    [content addSubview:_loginItemActionButton];
 
     NSBox *bottomSeparator = [[NSBox alloc] initWithFrame:NSMakeRect(28, 137, 404, 1)];
     bottomSeparator.boxType = NSBoxSeparator;
@@ -277,7 +356,7 @@ static NetworkTotals ReadNetworkTotals(void) {
     description.lineBreakMode = NSLineBreakByWordWrapping;
     [content addSubview:description];
 
-    NSString *version = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"1.2";
+    NSString *version = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"1.3";
     NSTextField *versionLabel = [self labelWithText:[NSString stringWithFormat:@"版本：%@", version]
                                               frame:NSMakeRect(28, 24, 180, 20)
                                                font:[NSFont systemFontOfSize:12]
@@ -312,12 +391,16 @@ static NetworkTotals ReadNetworkTotals(void) {
     return YES;
 }
 
+- (void)applicationDidBecomeActive:(NSNotification *)notification {
+    [self updateAutoLaunchStatus];
+}
+
 - (void)quitApplication:(id)sender {
     [NSApp terminate:nil];
 }
 @end
 
-int main(int argc, const char *argv[]) {
+int main(void) {
     @autoreleasepool {
         NSApplication *app = NSApplication.sharedApplication;
         AppDelegate *delegate = [AppDelegate new];
