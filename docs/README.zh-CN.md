@@ -2,13 +2,13 @@
   <img src="images/app-icon.png" width="156" alt="网速图标">
 </p>
 
-# 网速 1.3 使用说明书
+# 网速 1.4 使用说明书
 
 [English](README.en.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [返回首页](../README.md)
 
 ## 软件介绍
 
-“网速”是一款简洁的 macOS 菜单栏工具。菜单栏上方的 `↑` 显示实时上传速度，下方的 `↓` 显示实时下载速度。显示区域固定为 57 点宽，不占用 Dock，也不会弹出多余通知。
+“网速”是一款简洁的 macOS 菜单栏工具。菜单栏上方的 `↑` 显示实时上传速度，下方的 `↓` 显示实时下载速度。显示区域固定为 50 点宽，不占用 Dock，也不会弹出多余通知。
 
 设置窗口提供：
 
@@ -26,18 +26,18 @@
 
 ## 下载与校验
 
-从本仓库的 [Releases](../../../releases/latest) 页面下载 `NetSpeedMenu-1.3-universal.dmg`。DMG 是推荐安装方式。
+从本仓库的 [Releases](../../../releases/latest) 页面下载 `NetSpeedMenu-1.4-universal.dmg`。DMG 是推荐安装方式。
 
 打开“终端”，校验下载文件：
 
 ```bash
-shasum -a 256 ~/Downloads/NetSpeedMenu-1.3-universal.dmg
+shasum -a 256 ~/Downloads/NetSpeedMenu-1.4-universal.dmg
 ```
 
 正确结果：
 
 ```text
-cbae75d931538aef45ee8ea4a2efdabdb9adc50d99f2bff95795eed9a01c7a47
+8ba934190c84213a2a53f502301f3e1f0110bd1c9e46548d23d57ced5d95d7da
 ```
 
 ## 安装
@@ -48,12 +48,12 @@ cbae75d931538aef45ee8ea4a2efdabdb9adc50d99f2bff95795eed9a01c7a47
   <img src="images/install-guide.zh-CN.svg" width="900" alt="网速安装图解：普通未签名警告按绿色路线保留并打开 App，恶意软件、损坏或修改警告按红色 STOP 分支停止">
 </p>
 
-1. 双击 `NetSpeedMenu-1.3-universal.dmg`。
+1. 双击 `NetSpeedMenu-1.4-universal.dmg`。
 2. 将“网速.app”拖入旁边的“Applications”文件夹。
 3. 打开“应用程序”文件夹，找到“网速”。
 4. 第一次启动请按照下面的“首次打开”步骤操作。
 
-也可以使用 PKG：右键或按住 Control 点击 `NetSpeedMenu-1.3-universal.pkg`，选择“打开”，然后按照系统安装器提示操作。安装器可能要求管理员密码。
+也可以使用 PKG：右键或按住 Control 点击 `NetSpeedMenu-1.4-universal.pkg`，选择“打开”，然后按照系统安装器提示操作。安装器可能要求管理员密码。
 
 ## 为什么 macOS 会发出警告
 
@@ -122,6 +122,6 @@ Apple 对不同警告含义的说明见[安全地打开 Mac App](https://support
 2. 点击“退出网速”。
 3. 将 `/Applications/网速.app` 移到废纸篓。
 
-版本：1.3
+版本：1.4
 
 作者：郭鹏

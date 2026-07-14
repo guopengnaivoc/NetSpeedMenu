@@ -47,7 +47,7 @@
   <rect x="160" y="285" width="670" height="78" rx="16" fill="#f2f7fd" stroke="#bdd1e6" stroke-width="2"/>
   <circle cx="205" cy="324" r="25" fill="url(#brand)"/>
   <path d="M205 306 V334 M193 323 L205 336 L217 323" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="245" y="318" font-size="22" font-weight="700">NetSpeedMenu-1.3-universal.dmg</text>
+  <text x="245" y="318" font-size="22" font-weight="700">NetSpeedMenu-1.4-universal.dmg</text>
   <text x="245" y="345" class="tiny">Official Release download</text>
   <path d="M855 322 H1015" fill="none" stroke="#1677d2" stroke-width="8" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
   <text x="935" y="298" text-anchor="middle" font-size="21" font-weight="750" fill="#1677d2">Double-click</text>

@@ -16,6 +16,10 @@ static NSString * const StatusItemAutosaveName = @"local.codex.NetSpeedMenu.prim
 // with roughly one point of anti-clipping allowance at the current font size.
 static const CGFloat StatusItemWidth = 50.0;
 
+static BOOL IsLoginItemOpenEvent(NSAppleEventDescriptor *event) {
+    return [event paramDescriptorForKeyword:keyAELaunchedAsLogInItem] != nil;
+}
+
 static NetworkTotals ReadNetworkTotals(void) {
     struct ifaddrs *interfaces = NULL;
     NetworkTotals totals = {0, 0};
@@ -108,6 +112,26 @@ static NetworkTotals ReadNetworkTotals(void) {
     NSError *_lastAutoLaunchError;
 }
 
+- (void)applicationWillFinishLaunching:(NSNotification *)notification {
+    // The login-item marker belongs to the first kAEOpenApplication event.
+    // AppKit has not delivered that event yet in applicationDidFinishLaunching,
+    // so install the handler before launch finishes and decide there.
+    [NSAppleEventManager.sharedAppleEventManager
+        setEventHandler:self
+             andSelector:@selector(handleOpenApplicationEvent:withReplyEvent:)
+           forEventClass:kCoreEventClass
+              andEventID:kAEOpenApplication];
+}
+
+- (void)handleOpenApplicationEvent:(NSAppleEventDescriptor *)event
+                     withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
+    if (IsLoginItemOpenEvent(event)) return;
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showSettingsWindow];
+    });
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     _statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:StatusItemWidth];
     _statusItem.autosaveName = StatusItemAutosaveName;
@@ -123,14 +147,6 @@ static NetworkTotals ReadNetworkTotals(void) {
     [self applyStoredAutoLaunchPreference];
     _timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(refresh:) userInfo:nil repeats:YES];
     [NSRunLoop.mainRunLoop addTimer:_timer forMode:NSRunLoopCommonModes];
-
-    NSAppleEventDescriptor *event = NSAppleEventManager.sharedAppleEventManager.currentAppleEvent;
-    BOOL launchedAsLoginItem = [event paramDescriptorForKeyword:keyAELaunchedAsLogInItem] != nil;
-    if (!launchedAsLoginItem) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self showSettingsWindow];
-        });
-    }
 }
 
 - (void)refresh:(NSTimer *)timer {
@@ -395,6 +411,12 @@ static NetworkTotals ReadNetworkTotals(void) {
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification {
     [self updateAutoLaunchStatus];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification {
+    [NSAppleEventManager.sharedAppleEventManager
+        removeEventHandlerForEventClass:kCoreEventClass
+                              andEventID:kAEOpenApplication];
 }
 
 - (void)quitApplication:(id)sender {
