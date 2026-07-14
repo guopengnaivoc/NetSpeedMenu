@@ -14,8 +14,8 @@ static NSString * const AutoLaunchPreferenceKey = @"AutoLaunchEnabled";
 static NSString * const StatusItemAutosaveName = @"local.codex.NetSpeedMenu.primary";
 // Keep the status item tightly fitted around the widest two-digit/two-decimal
 // label (for example ↑99.99M/S) while preserving anti-clipping allowance.
-static const CGFloat StatusItemWidth = 44.0;
-static const CGFloat SpeedFontSize = 7.25;
+static const CGFloat StatusItemWidth = 42.0;
+static const CGFloat SpeedFontSize = 7.0;
 
 static BOOL IsLoginItemOpenEvent(NSAppleEventDescriptor *event) {
     return [event paramDescriptorForKeyword:keyAELaunchedAsLogInItem] != nil;
