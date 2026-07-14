@@ -2,13 +2,13 @@
   <img src="images/app-icon.png" width="156" alt="Icône NetSpeedMenu">
 </p>
 
-# Guide d’utilisation de NetSpeedMenu 1.4
+# Guide d’utilisation de NetSpeedMenu 1.5
 
 [简体中文](README.zh-CN.md) · [English](README.en.md) · [日本語](README.ja.md) · [Accueil](../README.md)
 
 ## Présentation
 
-NetSpeedMenu (« 网速 ») est un petit utilitaire macOS qui affiche le débit réseau dans la barre des menus. `↑` indique le débit montant et `↓` le débit descendant. La zone occupée fait exactement 50 points et l’application n’apparaît pas dans le Dock.
+NetSpeedMenu (« 网速 ») est un petit utilitaire macOS qui affiche le débit réseau dans la barre des menus. `↑` indique le débit montant et `↓` le débit descendant. La zone occupée fait exactement 42 points et l’application n’apparaît pas dans le Dock.
 
 La fenêtre de réglages contient :
 
@@ -26,18 +26,18 @@ L’application fonctionne sous macOS 13 ou version ultérieure, sur Mac Intel e
 
 ## Télécharger et vérifier
 
-Téléchargez `NetSpeedMenu-1.4-universal.dmg` depuis la page [Releases](../../../releases/latest) de ce dépôt. Le DMG est la méthode recommandée.
+Téléchargez `NetSpeedMenu-1.5-universal.dmg` depuis la page [Releases](../../../releases/latest) de ce dépôt. Le DMG est la méthode recommandée.
 
 Vérifiez le fichier dans Terminal :
 
 ```bash
-shasum -a 256 ~/Downloads/NetSpeedMenu-1.4-universal.dmg
+shasum -a 256 ~/Downloads/NetSpeedMenu-1.5-universal.dmg
 ```
 
 SHA-256 attendu :
 
 ```text
-8ba934190c84213a2a53f502301f3e1f0110bd1c9e46548d23d57ced5d95d7da
+f216477e58f1a2b369bde6d4da1b530c2575514e876956ec985a3492eb2203ec
 ```
 
 ## Installation
@@ -48,12 +48,12 @@ Suivez d’abord les flèches du guide visuel. Le chemin vert s’applique uniqu
   <img src="images/install-guide.fr.svg" width="900" alt="Guide visuel : pour une alerte ordinaire d’app non signée ou non notariée, ne pas choisir Placer dans la corbeille et utiliser Ouvrir quand même ; arrêter en cas d’alerte de logiciel malveillant, d’app endommagée ou modifiée">
 </p>
 
-1. Double-cliquez sur `NetSpeedMenu-1.4-universal.dmg`.
+1. Double-cliquez sur `NetSpeedMenu-1.5-universal.dmg`.
 2. Faites glisser `网速.app` vers le dossier Applications affiché à côté.
 3. Ouvrez le dossier Applications et trouvez `网速`.
 4. Suivez les instructions de premier lancement ci-dessous.
 
-Le PKG est également disponible. Faites un clic avec la touche Contrôle sur `NetSpeedMenu-1.4-universal.pkg`, choisissez **Ouvrir**, puis suivez l’installateur. Un mot de passe administrateur peut être demandé.
+Le PKG est également disponible. Faites un clic avec la touche Contrôle sur `NetSpeedMenu-1.5-universal.pkg`, choisissez **Ouvrir**, puis suivez l’installateur. Un mot de passe administrateur peut être demandé.
 
 ## Pourquoi macOS affiche un avertissement
 
@@ -120,6 +120,6 @@ L’application lit uniquement les compteurs cumulés d’octets des interfaces 
 2. Cliquez sur 退出网速 (Quitter NetSpeedMenu).
 3. Placez `/Applications/网速.app` dans la Corbeille.
 
-Version : 1.4
+Version : 1.5
 
 Auteur : Guo Peng (郭鹏)
