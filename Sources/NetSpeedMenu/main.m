@@ -12,6 +12,9 @@ typedef struct {
 
 static NSString * const AutoLaunchPreferenceKey = @"AutoLaunchEnabled";
 static NSString * const StatusItemAutosaveName = @"local.codex.NetSpeedMenu.primary";
+// Fits the widest two-digit/two-decimal label (for example ↑99.99M/S)
+// with roughly one point of anti-clipping allowance at the current font size.
+static const CGFloat StatusItemWidth = 50.0;
 
 static NetworkTotals ReadNetworkTotals(void) {
     struct ifaddrs *interfaces = NULL;
@@ -44,8 +47,8 @@ static NetworkTotals ReadNetworkTotals(void) {
 - (instancetype)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        _uploadLabel = [NSTextField labelWithString:@"↑0B/s"];
-        _downloadLabel = [NSTextField labelWithString:@"↓0B/s"];
+        _uploadLabel = [NSTextField labelWithString:@"↑0B/S"];
+        _downloadLabel = [NSTextField labelWithString:@"↓0B/S"];
         for (NSTextField *label in @[_uploadLabel, _downloadLabel]) {
             label.font = [NSFont monospacedDigitSystemFontOfSize:8.5 weight:NSFontWeightMedium];
             label.textColor = NSColor.labelColor;
@@ -71,16 +74,15 @@ static NetworkTotals ReadNetworkTotals(void) {
 }
 
 + (NSString *)formatSpeed:(double)value {
-    NSArray<NSString *> *units = @[@"B/s", @"K/s", @"M/s", @"G/s"];
+    NSArray<NSString *> *units = @[@"B/S", @"K/S", @"M/S", @"G/S"];
     value = MAX(0, value);
     NSUInteger index = 0;
-    while (value >= 1000 && index < units.count - 1) {
+    while (value >= 999.5 && index < units.count - 1) {
         value /= 1000;
         index++;
     }
     if (index == 0) return [NSString stringWithFormat:@"%.0f%@", value, units[index]];
-    if (value >= 100) return [NSString stringWithFormat:@"%.0f%@", value, units[index]];
-    if (value >= 10) return [NSString stringWithFormat:@"%.1f%@", value, units[index]];
+    if (value >= 99.995) return [NSString stringWithFormat:@"%.0f%@", value, units[index]];
     return [NSString stringWithFormat:@"%.2f%@", value, units[index]];
 }
 
@@ -107,9 +109,9 @@ static NetworkTotals ReadNetworkTotals(void) {
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    _statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:57];
+    _statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:StatusItemWidth];
     _statusItem.autosaveName = StatusItemAutosaveName;
-    _speedView = [[SpeedView alloc] initWithFrame:NSMakeRect(0, 0, 57, NSStatusBar.systemStatusBar.thickness)];
+    _speedView = [[SpeedView alloc] initWithFrame:NSMakeRect(0, 0, StatusItemWidth, NSStatusBar.systemStatusBar.thickness)];
     _speedView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     [_statusItem.button addSubview:_speedView];
     _statusItem.button.enabled = YES;
@@ -356,7 +358,7 @@ static NetworkTotals ReadNetworkTotals(void) {
     description.lineBreakMode = NSLineBreakByWordWrapping;
     [content addSubview:description];
 
-    NSString *version = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"1.3";
+    NSString *version = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"1.4";
     NSTextField *versionLabel = [self labelWithText:[NSString stringWithFormat:@"版本：%@", version]
                                               frame:NSMakeRect(28, 24, 180, 20)
                                                font:[NSFont systemFontOfSize:12]
