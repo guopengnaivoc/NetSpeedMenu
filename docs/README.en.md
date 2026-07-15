@@ -2,13 +2,13 @@
   <img src="images/app-icon.png" width="156" alt="NetSpeedMenu icon">
 </p>
 
-# NetSpeedMenu 1.4 User Guide
+# NetSpeedMenu 1.5 User Guide
 
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Home](../README.md)
 
 ## Overview
 
-NetSpeedMenu is a small macOS menu-bar utility. `↑` shows the current upload speed and `↓` shows the current download speed. Its menu-bar area is fixed at 50 points, and the app does not occupy the Dock.
+NetSpeedMenu is a small macOS menu-bar utility. `↑` shows the current upload speed and `↓` shows the current download speed. Its menu-bar area is fixed at 42 points, and the app does not occupy the Dock.
 
 The settings window provides:
 
@@ -26,18 +26,18 @@ It supports macOS 13 or later on both Intel and Apple Silicon Macs.
 
 ## Download and verify
 
-Download `NetSpeedMenu-1.4-universal.dmg` from this repository’s [Releases](../../../releases/latest) page. The DMG is the recommended installation method.
+Download `NetSpeedMenu-1.5-universal.dmg` from this repository’s [Releases](../../../releases/latest) page. The DMG is the recommended installation method.
 
 Verify the download in Terminal:
 
 ```bash
-shasum -a 256 ~/Downloads/NetSpeedMenu-1.4-universal.dmg
+shasum -a 256 ~/Downloads/NetSpeedMenu-1.5-universal.dmg
 ```
 
 Expected SHA-256:
 
 ```text
-8ba934190c84213a2a53f502301f3e1f0110bd1c9e46548d23d57ced5d95d7da
+f216477e58f1a2b369bde6d4da1b530c2575514e876956ec985a3492eb2203ec
 ```
 
 ## Install
@@ -48,12 +48,12 @@ Follow the arrows in the visual guide first. The green path applies only to ordi
   <img src="images/install-guide.en.svg" width="900" alt="Visual guide: for an ordinary unsigned or unnotarized-app alert, avoid Move to Trash and use Open Anyway in Privacy &amp; Security; stop for malware, damage, or modification alerts">
 </p>
 
-1. Double-click `NetSpeedMenu-1.4-universal.dmg`.
+1. Double-click `NetSpeedMenu-1.5-universal.dmg`.
 2. Drag `网速.app` to the adjacent Applications folder.
 3. Open the Applications folder and locate `网速`.
 4. Follow the first-launch instructions below.
 
-You can also use the PKG. Control-click `NetSpeedMenu-1.4-universal.pkg`, choose **Open**, and follow Installer. An administrator password may be required.
+You can also use the PKG. Control-click `NetSpeedMenu-1.5-universal.pkg`, choose **Open**, and follow Installer. An administrator password may be required.
 
 ## Why macOS shows a warning
 
@@ -122,6 +122,6 @@ The app only reads cumulative network-interface byte counters exposed by macOS. 
 2. Click 退出网速 (Quit NetSpeedMenu).
 3. Move `/Applications/网速.app` to the Trash.
 
-Version: 1.4
+Version: 1.5
 
 Author: Guo Peng (郭鹏)

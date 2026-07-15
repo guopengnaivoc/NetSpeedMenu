@@ -12,9 +12,10 @@ typedef struct {
 
 static NSString * const AutoLaunchPreferenceKey = @"AutoLaunchEnabled";
 static NSString * const StatusItemAutosaveName = @"local.codex.NetSpeedMenu.primary";
-// Fits the widest two-digit/two-decimal label (for example ↑99.99M/S)
-// with roughly one point of anti-clipping allowance at the current font size.
-static const CGFloat StatusItemWidth = 50.0;
+// Keep the status item tightly fitted around the widest two-digit/two-decimal
+// label (for example ↑99.99M/S) while preserving anti-clipping allowance.
+static const CGFloat StatusItemWidth = 42.0;
+static const CGFloat SpeedFontSize = 7.0;
 
 static BOOL IsLoginItemOpenEvent(NSAppleEventDescriptor *event) {
     return [event paramDescriptorForKeyword:keyAELaunchedAsLogInItem] != nil;
@@ -54,7 +55,7 @@ static NetworkTotals ReadNetworkTotals(void) {
         _uploadLabel = [NSTextField labelWithString:@"↑0B/S"];
         _downloadLabel = [NSTextField labelWithString:@"↓0B/S"];
         for (NSTextField *label in @[_uploadLabel, _downloadLabel]) {
-            label.font = [NSFont monospacedDigitSystemFontOfSize:8.5 weight:NSFontWeightMedium];
+            label.font = [NSFont monospacedDigitSystemFontOfSize:SpeedFontSize weight:NSFontWeightMedium];
             label.textColor = NSColor.labelColor;
             label.alignment = NSTextAlignmentRight;
             label.lineBreakMode = NSLineBreakByClipping;
@@ -374,7 +375,7 @@ static NetworkTotals ReadNetworkTotals(void) {
     description.lineBreakMode = NSLineBreakByWordWrapping;
     [content addSubview:description];
 
-    NSString *version = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"1.4";
+    NSString *version = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"1.5";
     NSTextField *versionLabel = [self labelWithText:[NSString stringWithFormat:@"版本：%@", version]
                                               frame:NSMakeRect(28, 24, 180, 20)
                                                font:[NSFont systemFontOfSize:12]
